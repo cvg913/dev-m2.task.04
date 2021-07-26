@@ -18,48 +18,57 @@ namespace dev_m2.task._04
         }
 
 
-        public void CargarDatos(){
-            if(!ExistenDatos()){
+        public void CargarDatos()
+        {
+            if (!ExistenDatos())
+            {
                 var datos = File.ReadAllLines(_RutaArchivo);
                 var contador = 0;
-                using(var conexion = new ElcoBitContext()  ){
-                foreach(var ln in datos){
-                    if(ln.Length>1){
-                        var dato = ln.Split(',');
-                        var id =  Funciones.EnteroSinComilla(dato[0]);
-                        if( id != 0) {
-                            
+                using (var conexion = new ElcoBitContext())
+                {
+                    foreach (var ln in datos)
+                    {
+                        if (ln.Length > 1)
+                        {
+                            var dato = ln.Split(',');
+                            var id = Funciones.EnteroSinComilla(dato[0]);
+                            if (id != 0)
+                            {
+
                                 EntidaFederativa nuevaEntidad = new EntidaFederativa();
                                 nuevaEntidad.EntidadId = id;
-                                nuevaEntidad.Nombre = Funciones.TextoSinComilla(dato[1]);;
+                                nuevaEntidad.Nombre = Funciones.TextoSinComilla(dato[1]); ;
                                 nuevaEntidad.NombreAbreviado = Funciones.TextoSinComilla(dato[2]);
                                 nuevaEntidad.PoblacionTotal = Funciones.EnteroSinComilla(dato[3]);
                                 nuevaEntidad.PoblacionMasculina = Funciones.EnteroSinComilla(dato[5]);
                                 nuevaEntidad.PoblacionFemenina = Funciones.EnteroSinComilla(dato[6]);
 
                                 conexion.EntidaFederativas.Add(nuevaEntidad);
-                               
-                                contador ++;
+
+                                contador++;
                             }
                         }
                     }
-                conexion.SaveChanges();
+                    conexion.SaveChanges();
                 }
                 Console.WriteLine($"{contador} datos cargados exitosamente");
             }
-            else{
+            else
+            {
                 Console.WriteLine("Ya existen datos cargados.");
             }
         }
 
-        public bool ExistenDatos(){
-            using(var conexion = new ElcoBitContext()  ){
-                var entidades = conexion.EntidaFederativas.Count();  
-                return entidades>0;             
+        public bool ExistenDatos()
+        {
+            using (var conexion = new ElcoBitContext())
+            {
+                var entidades = conexion.EntidaFederativas.Count();
+                return entidades > 0;
             }
         }
 
-       
+
     }
 
 }

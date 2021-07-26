@@ -25,9 +25,9 @@ namespace dev_m2.task._03.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                 optionsBuilder.UseSqlServer("CADENA_DE_CONEXION");
-                 optionsBuilder.EnableSensitiveDataLogging();
-                 optionsBuilder.EnableDetailedErrors();
+                optionsBuilder.UseSqlServer("CADENA_DE_CONEXION");
+                optionsBuilder.EnableSensitiveDataLogging();
+                optionsBuilder.EnableDetailedErrors();
             }
         }
 
