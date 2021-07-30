@@ -25,7 +25,7 @@ namespace dev_m2.task._04
         {
             if (!ExistenDatos())
             {
-                var datos = File.ReadAllLines(_RutaArchivo);
+                var datos = File.ReadAllLines("C:/DevFundamentals/dev-m2.task.04/Archivos/Localidades.csv");
                 using (var conexion = new ElcoBitContext())
                 {
                     //  List<Localidad> listaLoc = new List<Localidad>();

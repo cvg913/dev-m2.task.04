@@ -22,7 +22,7 @@ namespace dev_m2.task._04
         {
             if (!ExistenDatos())
             {
-                var datos = File.ReadAllLines(_RutaArchivo);
+                var datos = File.ReadAllLines("C:/DevFundamentals/dev-m2.task.04/Archivos/EntidadFederativa.csv");
                 var contador = 0;
                 using (var conexion = new ElcoBitContext())
                 {
